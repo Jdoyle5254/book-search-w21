@@ -8,12 +8,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/", (req,res) => {
-    return ("hello are you working?")
-    console.log("you are here working now")
+    res.json("hello are you working?")
+   
 })
 
 app.get("/api", (req, res) => {
-    return ("hello world from your server")
+    res.json("hello world from your server")
 })
 
 app.listen(PORT, () => {
