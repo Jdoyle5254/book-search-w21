@@ -13,7 +13,7 @@ function SearchBookBox({ handleSearchChange }) {
           aria-label="Search"
      
         />
-       <button onClick={() => console.log("get some books! ")}>Search!</button>  
+       <button className="searchbtn" onClick={() => console.log("get some books! ")}>Search!</button>  
       </form>
     </div>
   );
