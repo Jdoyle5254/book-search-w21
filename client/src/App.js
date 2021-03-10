@@ -1,4 +1,5 @@
 import React from 'react'
+import {useEffect, useState} from "react"
 import './App.css';
 import Header from "./components/Header"
 import SearchBookBox from "./components/SearchBookBox"
@@ -6,9 +7,9 @@ import SearchBookBox from "./components/SearchBookBox"
 function App() {
   // const [search, setSearch] = useState({ search: "", limit: "" });
   // const [gifs, setgifs] = useState([]);
-  const [data, setData]  = React.useState(null)
+  const [data, setData]  = useState(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch("/api")
       .then((res) => res.json())
       // console.log('res', res.data)

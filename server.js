@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require('path')
 const mongoose = require("mongoose");
+const models = require ("./models")
 
 const PORT = process.env.PORT || 3001
 
@@ -31,7 +32,7 @@ if (process.env.NODE_ENV === "production") {
   } else {
     mongoose.connect("mongodb://localhost/booksearchdb",
     {
-      //useNewUrlParser: true,
+      useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
       useFindAndModify: false
