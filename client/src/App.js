@@ -6,6 +6,14 @@ import SearchBookBox from "./components/SearchBookBox"
 function App() {
   // const [search, setSearch] = useState({ search: "", limit: "" });
   // const [gifs, setgifs] = useState([]);
+  const [data, setData]  = React.useState(null)
+
+  React.useEffect(() => {
+    fetch("/api")
+      .then((res) => res.json())
+      // console.log('res', res.data)
+      .then((data) => setData(data.message));
+  }, []);
 
   // const handleSearch = event => {
   //   setSearch({ ...search, search: event.target.value });
@@ -42,6 +50,7 @@ function App() {
       <Header />
       <SearchBookBox />
        <h1>Start here and code</h1>
+       {!data ? "Loading " :  data}
     </div>
   );
 }
