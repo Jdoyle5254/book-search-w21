@@ -50,7 +50,7 @@ function App() {
       <Header />
       <SearchBookBox />
        <h1>Start here and code</h1>
-       {!data ? "Loading " :  data}
+       {!data ? "Loading the data? " :  data}
     </div>
   );
 }
