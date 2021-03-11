@@ -1,26 +1,18 @@
 const express = require("express");
-const path = require('path')
 const mongoose = require("mongoose");
-const models = require ("./models")
-
-const PORT = process.env.PORT || 3001
-
-//TODO need to create route to local DB   need to create flow chart for api calls and server to db calls
-
-const app = express()
-
+const routes = require("./routes");
+const app = express();
+const PORT = process.env.PORT || 3001;
+// Configure body parsing for AJAX requests
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-app.get("/", (req,res) => {
-    res.json("hello are you working?")
-   
-})
-
-app.get("/api", (req, res) => {
-    res.json("hello world from your server")
-})
-
+// Serve up static assets
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+// Add routes, both API and view
+app.use(routes);
+// Connect to the Mongo DB
 // Connect to the Mongo DB
 if (process.env.NODE_ENV === "production") {
     mongoose.connect(process.env.MONGODB_URI,  {
@@ -30,18 +22,16 @@ if (process.env.NODE_ENV === "production") {
       useFindAndModify: false
     });
   } else {
-    mongoose.connect("mongodb://localhost/booksearchdb",
+    mongoose.connect("mongodb://localhost/reactreadinglist",
     {
-      useNewUrlParser: true,
+      //useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
       useFindAndModify: false
     }) .then(()=>{
       console.log("DB Connected Successfully");
   });
-  }
-
-app.listen(PORT, () => {
-    console.log(`Server Listening on ${PORT}`); 
-
-})
+  }// Start the API server
+app.listen(PORT, () =>
+  console.log(`:earth_americas:  ==> API Server now listening on PORT ${PORT}!`)
+);
